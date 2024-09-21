@@ -10,27 +10,9 @@ import {
   Restaurant,
 } from "@mui/icons-material";
 
-import styles from "./styles.module.css";
-
-function HotelDescription() {
+function AmenitiesList() {
   return (
-    <div className={styles.hotel_description}>
-      <p>
-        Situado no centro do Rio de Janeiro, o Hotel Atlântico Avenida oferece
-        vista da movimentada Avenida Rio Branco. Este hotel fica a apenas 5
-        minutos do Aeroporto Santos Dumont e dispõe de Wi-Fi gratuito nas áreas
-        comuns.
-      </p>
-      <p>
-        Os quartos do Hotel Atlântico Avenida têm cama com cabeceira ornamental
-        em madeira maciça e decoração em tons vivos. Todas as unidades incluem
-        ar-condicionado, TV a cabo, frigobar e um banheiro privativo.
-      </p>
-      <p>
-        Os quartos do Hotel Atlântico Avenida têm cama com cabeceira ornamental
-        em madeira maciça e decoração em tons vivos. Todas as unidades incluem
-        ar-condicionado, TV a cabo, frigobar e um banheiro privativo.
-      </p>
+    <>
       <h4>Principais comodidades</h4>
       <List sx={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)" }}>
         <ListItem>
@@ -82,8 +64,8 @@ function HotelDescription() {
           <ListItemText primary="Restaurante" />
         </ListItem>
       </List>
-    </div>
+    </>
   );
 }
 
-export default HotelDescription;
+export default AmenitiesList;

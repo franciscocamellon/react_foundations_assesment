@@ -1,40 +1,23 @@
-import {
-  ImageList,
-  ImageListItem,
-  List,
-  ListItemIcon,
-  ListItemText,
-  Rating,
-  ListItem,
-} from "@mui/material";
-import {
-  LocationOn,
-  Wifi,
-  LocalParking,
-  AcUnit,
-  Coffee,
-  LocalLaundryService,
-  SmokeFree,
-  Elevator,
-  Restaurant,
-} from "@mui/icons-material";
+import { useParams } from "react-router-dom";
 import Header from "../../components/header/header";
+import Hotel from "../../components/hotel/hotel";
 
 import styles from "./styles.module.css";
-import HotelHeader from "../../components/detailHeader/header";
-import HotelImageList from "../../components/imageList/hotelImageList";
-import HotelDescription from "../../components/hotelDescription/hotelDescription";
 
 function Details() {
+  const params = useParams();
+
+  const storedHotels = JSON.parse(localStorage.getItem("@hotels"));
+
+  const clickedHotel = storedHotels.find((hotel) => hotel.id === params.id);
+
   return (
     <>
       <Header></Header>
 
       <div className={styles.container}>
         <h1>Detalhes</h1>
-        <HotelHeader />
-        <HotelImageList />
-        <HotelDescription />
+        <Hotel key={params.id} hotel={clickedHotel} />
       </div>
     </>
   );

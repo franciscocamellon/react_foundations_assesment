@@ -9,7 +9,7 @@ export const pagesRouter = createBrowserRouter([
     element: <Home />,
   },
   {
-    path: "/details",
+    path: "/details/:id",
     element: <Details />,
   },
 ]);

@@ -3,7 +3,7 @@ import { Link, NavLink } from "react-router-dom";
 
 import styles from "./styles.module.css";
 import Header from "../../components/header/header";
-import HotelCard from "../../components/hotel/hotel";
+import HotelCard from "../../components/hotel/card";
 import { mockHotels } from "../../data/mockupData";
 
 function Home() {
