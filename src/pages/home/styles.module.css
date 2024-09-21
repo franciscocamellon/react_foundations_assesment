@@ -1,0 +1,29 @@
+.container {
+  padding: 20px;
+}
+
+.page_title_container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin: 20px 15px;
+}
+
+.page_title_container h1 {
+  margin-bottom: 5px;
+}
+
+.page_title_container h5 {
+  margin-bottom: 20px;
+  font-size: 1.05rem;
+  font-weight: 500;
+  color: #595959;
+}
+
+.container_list {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 30px;
+}
