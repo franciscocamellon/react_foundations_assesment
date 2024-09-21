@@ -1,0 +1,23 @@
+.page_title_container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20px 0px;
+}
+
+.hotel_title {
+  display: flex;
+  flex-direction: column;
+}
+
+.hotel_title p {
+  display: flex;
+  align-items: center;
+  margin-top: 7px;
+}
+
+.hotel_price {
+  font-size: 1.75rem;
+  font-weight: bold;
+  text-align: end;
+}

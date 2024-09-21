@@ -7,16 +7,6 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import styles from "./styles.module.css";
 import { CardHeader, CardMedia, Rating, Typography } from "@mui/material";
 
-const hotels = {
-  name: "CasinhaPiri",
-  image:
-    "https://cf.bstatic.com/xdata/images/hotel/max1024x768/417557103.jpg?k=d4cf7959d88130e96cfedcb7137ec51fb805a75a1b15e7017f1d7e6e5aa87c39&o=&hp=1",
-  rating: "4",
-  city: "Pirinópolis",
-  state: "Goiás",
-  price: "585",
-};
-
 function HotelCard(props) {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));

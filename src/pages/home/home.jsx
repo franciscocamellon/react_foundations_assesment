@@ -4,7 +4,7 @@ import { Link, NavLink } from "react-router-dom";
 import styles from "./styles.module.css";
 import Header from "../../components/header/header";
 import HotelCard from "../../components/hotel/hotel";
-import { mockHhotels } from "./hotels";
+import { mockHotels } from "../../data/mockupData";
 
 function Home() {
   const [hotels, setHotels] = useState([]);
@@ -13,7 +13,7 @@ function Home() {
     const initialData = localStorage.getItem("@loadedInitialData");
 
     if (!initialData) {
-      localStorage.setItem("@hotels", JSON.stringify(mockHhotels));
+      localStorage.setItem("@hotels", JSON.stringify(mockHotels));
       localStorage.setItem("@loadedInitialData", JSON.stringify(true));
     }
 
@@ -26,7 +26,7 @@ function Home() {
   }, []);
 
   return (
-    <div>
+    <>
       <Header />
       <div className={styles.container}>
         <div className={styles.page_title_container}>
@@ -43,7 +43,7 @@ function Home() {
           ))}
         </div>
       </div>
-    </div>
+    </>
   );
 }
 
