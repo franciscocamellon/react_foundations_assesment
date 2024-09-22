@@ -9,59 +9,87 @@ import {
   Elevator,
   Restaurant,
 } from "@mui/icons-material";
+import { green, grey } from "@mui/material/colors";
 
-function AmenitiesList() {
+function AmenitiesList({ list }) {
+  console.log("list:", list);
   return (
     <>
       <h4>Principais comodidades</h4>
       <List sx={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)" }}>
         <ListItem>
           <ListItemIcon>
-            <Wifi />
+            <Wifi color={list.Wifi ? "success" : "disabled"} />
           </ListItemIcon>
-          <ListItemText primary="Wifi gratuito" />
+          <ListItemText
+            primary="Wifi gratuito"
+            sx={{ color: list.Wifi ? green[900] : grey[400] }}
+          />
         </ListItem>
         <ListItem>
           <ListItemIcon>
-            <LocalParking />
+            <LocalParking color={list.LocalParking ? "success" : "disabled"} />
           </ListItemIcon>
-          <ListItemText primary="Estacionamento interno" />
+          <ListItemText
+            primary="Estacionamento interno"
+            sx={{ color: list.LocalParking ? green[900] : grey[400] }}
+          />
         </ListItem>
         <ListItem>
           <ListItemIcon>
-            <AcUnit />
+            <AcUnit color={list.AcUnit ? "success" : "disabled"} />
           </ListItemIcon>
-          <ListItemText primary="Ar condicionado" />
+          <ListItemText
+            primary="Ar condicionado"
+            sx={{ color: list.AcUnit ? green[900] : grey[400] }}
+          />
         </ListItem>
         <ListItem>
           <ListItemIcon>
-            <LocalLaundryService />
+            <LocalLaundryService
+              color={list.LocalLaundryService ? "success" : "disabled"}
+            />
           </ListItemIcon>
-          <ListItemText primary="Lavanderia" />
+          <ListItemText
+            primary="Lavanderia"
+            sx={{ color: list.LocalLaundryService ? green[900] : grey[400] }}
+          />
         </ListItem>
         <ListItem>
           <ListItemIcon>
-            <Coffee />
+            <Coffee color={list.Coffee ? "success" : "disabled"} />
           </ListItemIcon>
-          <ListItemText primary="Café da manhã" />
+          <ListItemText
+            primary="Café da manhã"
+            sx={{ color: list.Coffee ? green[900] : grey[400] }}
+          />
         </ListItem>
         <ListItem>
           <ListItemIcon>
-            <SmokeFree />
+            <SmokeFree color={list.SmokeFree ? "success" : "disabled"} />
           </ListItemIcon>
-          <ListItemText primary="Quartos para não fumantes" />
+          <ListItemText
+            primary="Quartos para não fumantes"
+            sx={{ color: list.SmokeFree ? green[900] : grey[400] }}
+          />
         </ListItem>
         <ListItem>
           <ListItemIcon>
-            <Elevator />
+            <Elevator color={list.Elevator ? "success" : "disabled"} />
           </ListItemIcon>
-          <ListItemText primary="Elevador" />
+          <ListItemText
+            primary="Elevador"
+            sx={{ color: list.Elevator ? green[900] : grey[400] }}
+          />
         </ListItem>
         <ListItem>
           <ListItemIcon>
-            <Restaurant />
+            <Restaurant color={list.Restaurant ? "success" : "disabled"} />
           </ListItemIcon>
-          <ListItemText primary="Restaurante" />
+          <ListItemText
+            primary="Restaurante"
+            sx={{ color: list.Restaurant ? green[900] : grey[400] }}
+          />
         </ListItem>
       </List>
     </>

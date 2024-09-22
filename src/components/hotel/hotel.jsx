@@ -19,7 +19,10 @@ function Hotel({ hotel }) {
         secondRoom={hotel.secondRoom}
         thirdRoom={hotel.thirdRoom}
       />
-      <HotelDescription description={hotel.description} />
+      <HotelDescription
+        description={hotel.description}
+        amenities={hotel.amenities}
+      />
     </>
   );
 }

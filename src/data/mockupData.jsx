@@ -16,7 +16,16 @@ export const mockHotels = [
     price: "585",
     description:
       "Localizada em Pirenópolis, Goiás, perto da Igreja do Bonfim e da Igreja de Nossa Senhora do Rosário, a CasinhaPiri oferece acomodações com acesso a uma banheira de hidromassagem. Com vista da montanha, esta acomodação dispõe de varanda térrea e piscina. O chalé oferece quartos com ar-condicionado, estacionamento privativo gratuito e Wi-Fi gratuito. O chalé dispõe de varanda, vista do jardim, área de estar, TV de tela plana, cozinha totalmente equipada com forno e micro-ondas e banheiro privativo com chuveiro e secador de cabelo. Uma torradeira, geladeira, fogão e cafeteira também estão disponíveis. Todas as unidades do complexo de chalés incluem roupa de cama e toalhas.",
-    amenities: "",
+    amenities: {
+      AcUnit: true,
+      Coffee: true,
+      Elevator: true,
+      LocalLaundryService: true,
+      LocalParking: true,
+      Restaurant: true,
+      SmokeFree: true,
+      Wifi: true,
+    },
   },
   {
     id: "c1ab4db6-789d-4b6a-b61c-2cf6987dfcc9",
@@ -32,7 +41,16 @@ export const mockHotels = [
     price: "170",
     description:
       "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Accusamus neque quos, iste rem culpa esse. Soluta nihil quae praesentium cupiditate quaerat voluptates debitis, distinctio corrupti quibusdam ex magnam error numquam.",
-    amenities: "",
+    amenities: {
+      AcUnit: true,
+      Coffee: true,
+      Elevator: true,
+      LocalLaundryService: true,
+      LocalParking: true,
+      Restaurant: true,
+      SmokeFree: true,
+      Wifi: true,
+    },
   },
   {
     id: "503fd1fe-c24d-4d48-8929-ce833853a1d3",
@@ -48,7 +66,16 @@ export const mockHotels = [
     price: "585",
     description:
       "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Accusamus neque quos, iste rem culpa esse. Soluta nihil quae praesentium cupiditate quaerat voluptates debitis, distinctio corrupti quibusdam ex magnam error numquam.",
-    amenities: "",
+    amenities: {
+      AcUnit: true,
+      Coffee: true,
+      Elevator: true,
+      LocalLaundryService: true,
+      LocalParking: true,
+      Restaurant: true,
+      SmokeFree: true,
+      Wifi: true,
+    },
   },
   {
     id: "474338b4-ac07-4c13-9663-4ed726d80dab",
@@ -64,7 +91,16 @@ export const mockHotels = [
     price: "619",
     description:
       "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Accusamus neque quos, iste rem culpa esse. Soluta nihil quae praesentium cupiditate quaerat voluptates debitis, distinctio corrupti quibusdam ex magnam error numquam.",
-    amenities: "",
+    amenities: {
+      AcUnit: true,
+      Coffee: true,
+      Elevator: true,
+      LocalLaundryService: true,
+      LocalParking: true,
+      Restaurant: true,
+      SmokeFree: true,
+      Wifi: true,
+    },
   },
   {
     id: "04d99317-fff0-4eec-8a9d-724e0275a9aa",
@@ -80,7 +116,16 @@ export const mockHotels = [
     price: "390",
     description:
       "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Accusamus neque quos, iste rem culpa esse. Soluta nihil quae praesentium cupiditate quaerat voluptates debitis, distinctio corrupti quibusdam ex magnam error numquam.",
-    amenities: "",
+    amenities: {
+      AcUnit: true,
+      Coffee: true,
+      Elevator: true,
+      LocalLaundryService: true,
+      LocalParking: true,
+      Restaurant: true,
+      SmokeFree: true,
+      Wifi: true,
+    },
   },
   {
     id: "a1bb89f9-24d8-4450-95f8-6e2e4d79d00a",
@@ -96,6 +141,15 @@ export const mockHotels = [
     price: "510",
     description:
       "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Accusamus neque quos, iste rem culpa esse. Soluta nihil quae praesentium cupiditate quaerat voluptates debitis, distinctio corrupti quibusdam ex magnam error numquam.",
-    amenities: "",
+    amenities: {
+      AcUnit: true,
+      Coffee: true,
+      Elevator: true,
+      LocalLaundryService: true,
+      LocalParking: true,
+      Restaurant: true,
+      SmokeFree: true,
+      Wifi: true,
+    },
   },
 ];

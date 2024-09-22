@@ -29,12 +29,12 @@ export const brazilianStates = [
 ];
 
 export const amenities = [
-  "Wifi gratuito",
-  "Estacionamento interno",
-  "Ar condicionado",
-  "Lavanderia",
-  "Café da manhã",
-  "Quartos para não fumantes",
-  "Elevador",
-  "Restaurante",
+  { cod: "Wifi", label: "Wifi gratuito" },
+  { cod: "LocalParking", label: "Estacionamento interno" },
+  { cod: "AcUnit", label: "Ar condicionado" },
+  { cod: "LocalLaundryService", label: "Lavanderia" },
+  { cod: "Coffee", label: "Café da manhã" },
+  { cod: "SmokeFree", label: "Quartos para não fumantes" },
+  { cod: "Elevator", label: "Elevador" },
+  { cod: "Restaurant", label: "Restaurante" },
 ];

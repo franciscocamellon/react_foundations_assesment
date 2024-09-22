@@ -1,3 +1,4 @@
+import { v4 as uuidv4 } from "uuid";
 import {
   Button,
   Dialog,
@@ -18,17 +19,83 @@ import {
   FormGroup,
   Checkbox,
 } from "@mui/material";
-import Grid from "@mui/material/Grid2";
 
 import { brazilianStates, amenities } from "../../data/applicationData";
 import { useEffect, useState } from "react";
 
 function RegistrationForm(props) {
-  const [age, setAge] = useState("");
+  const [formData, setFormData] = useState({
+    id: "",
+    name: "",
+    principalImage: "",
+    firstRoom: "",
+    secondRoom: "",
+    thirdRoom: "",
+    rating: "",
+    city: "",
+    state: "",
+    price: "",
+    description: "",
+    amenities: "",
+  });
+  const [chosenAmenities, setChosenAmenities] = useState({
+    Wifi: false,
+    LocalParking: false,
+    AcUnit: false,
+    LocalLaundryService: false,
+    Coffee: false,
+    SmokeFree: false,
+    Elevator: false,
+    Restaurant: false,
+  });
 
-  const handleChange = (event) => {
-    setAge(event.target.value);
-  };
+  function saveHotel(event) {
+    event.preventDefault();
+
+    const newHotel = {
+      id: uuidv4(),
+      name: formData.name,
+      principalImage: formData.principalImage,
+      firstRoom: formData.firstRoom,
+      secondRoom: formData.secondRoom,
+      thirdRoom: formData.thirdRoom,
+      rating: formData.rating,
+      city: formData.city,
+      state: formData.state,
+      price: formData.price,
+      description: formData.description,
+      amenities: chosenAmenities,
+    };
+    const arrayHotels = JSON.parse(localStorage.getItem("@hotels"));
+    console.log(arrayHotels);
+    arrayHotels.push(newHotel);
+    localStorage.setItem("@hotels", JSON.stringify(arrayHotels));
+
+    setFormData({
+      id: "",
+      name: "",
+      principalImage: "",
+      firstRoom: "",
+      secondRoom: "",
+      thirdRoom: "",
+      rating: "",
+      city: "",
+      state: "",
+      price: "",
+      description: "",
+      amenities: "",
+    });
+    props.onClose();
+  }
+
+  function getChosenAmenities(event) {
+    const { name, checked } = event.target;
+    setChosenAmenities((prevAmenities) => ({
+      ...prevAmenities,
+      [name]: checked,
+    }));
+    console.log(chosenAmenities);
+  }
 
   return (
     <>
@@ -36,17 +103,30 @@ function RegistrationForm(props) {
         <DialogTitle> Cadastro de Hotel</DialogTitle>
         <DialogContent>
           <Stack direction="column" spacing={2} margin={2}>
-            <TextField variant="outlined" label="Nome do hotel"></TextField>
+            <TextField
+              onChange={(event) =>
+                setFormData({ ...formData, name: event.target.value })
+              }
+              variant="outlined"
+              label="Nome do hotel"
+            />
             <Stack direction="row" spacing={2} margin={2}>
-              <TextField variant="outlined" label="Cidade"></TextField>
+              <TextField
+                variant="outlined"
+                label="Cidade"
+                onChange={(event) =>
+                  setFormData({ ...formData, city: event.target.value })
+                }
+              />
+
               <FormControl sx={{ mt: 2, minWidth: 200 }}>
                 <InputLabel id="br-states">Estado</InputLabel>
                 <Select
                   labelId="br-states"
-                  id="demo-simple-select-helper"
-                  value={age}
                   label="Estado"
-                  onChange={handleChange}
+                  onChange={(event) =>
+                    setFormData({ ...formData, state: event.target.value })
+                  }
                 >
                   {brazilianStates.map((brState) => (
                     <MenuItem key={brState.id} value={brState.abbreviation}>
@@ -56,16 +136,28 @@ function RegistrationForm(props) {
                 </Select>
               </FormControl>
             </Stack>
+
             <Stack
               sx={{ display: "flex", alignItems: "center" }}
               direction="row"
               spacing={2}
               margin={2}
             >
-              <TextField variant="outlined" label="Preço"></TextField>
+              <TextField
+                variant="outlined"
+                label="Preço"
+                onChange={(event) =>
+                  setFormData({ ...formData, price: event.target.value })
+                }
+              />
               <Stack>
                 <Typography component="legend">Rating</Typography>
-                <Rating title="Rating"></Rating>
+                <Rating
+                  title="Rating"
+                  onChange={(event) =>
+                    setFormData({ ...formData, rating: event.target.value })
+                  }
+                ></Rating>
               </Stack>
             </Stack>
             <Stack
@@ -78,12 +170,21 @@ function RegistrationForm(props) {
                 variant="outlined"
                 label="Foto principal"
                 sx={{ width: "calc(50% - 16px)" }}
-              ></TextField>
+                onChange={(event) =>
+                  setFormData({
+                    ...formData,
+                    principalImage: event.target.value,
+                  })
+                }
+              />
               <TextField
                 variant="outlined"
                 label="Foto quarto simples"
                 sx={{ width: "calc(50% - 16px)" }}
-              ></TextField>
+                onChange={(event) =>
+                  setFormData({ ...formData, firstRoom: event.target.value })
+                }
+              />
             </Stack>
             <Stack
               sx={{ display: "flex", alignItems: "center" }}
@@ -95,12 +196,18 @@ function RegistrationForm(props) {
                 variant="outlined"
                 label="Suíte standard"
                 sx={{ width: "calc(50% - 16px)" }}
-              ></TextField>
+                onChange={(event) =>
+                  setFormData({ ...formData, secondRoom: event.target.value })
+                }
+              />
               <TextField
                 variant="outlined"
                 label="Suíte casal"
                 sx={{ width: "calc(50% - 16px)" }}
-              ></TextField>
+                onChange={(event) =>
+                  setFormData({ ...formData, thirdRoom: event.target.value })
+                }
+              />
             </Stack>
 
             <FormControl sx={{ m: 3 }} component="fieldset" variant="standard">
@@ -112,8 +219,15 @@ function RegistrationForm(props) {
               <FormGroup>
                 {amenities.map((amenity) => (
                   <FormControlLabel
-                    control={<Checkbox name="gilad" />}
-                    label={amenity}
+                    key={amenity.cod}
+                    control={
+                      <Checkbox
+                        name={amenity.cod}
+                        checked={chosenAmenities[amenity.cod] || false}
+                        onChange={(event) => getChosenAmenities(event)}
+                      />
+                    }
+                    label={amenity.label}
                   />
                 ))}
               </FormGroup>
@@ -124,12 +238,17 @@ function RegistrationForm(props) {
               multiline
               rows={4}
               placeholder="Descreva as características do hotel"
+              onChange={(event) =>
+                setFormData({ ...formData, description: event.target.value })
+              }
             />
           </Stack>
         </DialogContent>
         <DialogActions>
           <Button onClick={props.onClose}>Cancelar</Button>
-          <Button type="submit">Salvar</Button>
+          <Button type="submit" onClick={(event) => saveHotel(event)}>
+            Salvar
+          </Button>
         </DialogActions>
       </Dialog>
     </>
