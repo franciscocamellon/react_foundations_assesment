@@ -1,5 +1,6 @@
 .container {
   padding: 20px;
+  position: relative;
 }
 
 .page_title_container {
@@ -26,4 +27,13 @@
   justify-content: center;
   flex-wrap: wrap;
   gap: 30px;
+}
+
+.float_button {
+  margin: 0;
+  top: auto;
+  right: 20;
+  bottom: 20;
+  left: auto;
+  position: fixed;
 }
