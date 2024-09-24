@@ -6,8 +6,17 @@ import HotelImageList from "./imageList";
 import RegistrationForm from "../forms/registration";
 
 import styles from "./styles.module.css";
+import DeleteForm from "../forms/delete";
 
-function Hotel({ hotel, formVisibility, onCloseForm, onEditClick }) {
+function Hotel({
+  hotel,
+  formVisibility,
+  deleteFormVisibility,
+  onCloseForm,
+  onEditClick,
+  onDeleteClick,
+  onCloseDeleteForm,
+}) {
   return (
     <>
       <HotelHeader
@@ -17,7 +26,7 @@ function Hotel({ hotel, formVisibility, onCloseForm, onEditClick }) {
         state={hotel.state}
         price={hotel.price}
         onEditIconClick={() => onEditClick(true)}
-        onDeleteIconClick={() => {}}
+        onDeleteIconClick={() => onDeleteClick(true)}
       />
       <HotelImageList
         principalImage={hotel.principalImage}
@@ -33,6 +42,11 @@ function Hotel({ hotel, formVisibility, onCloseForm, onEditClick }) {
         visibility={formVisibility}
         onClose={onCloseForm}
         data={hotel}
+      />
+      <DeleteForm
+        visibility={deleteFormVisibility}
+        onClose={onCloseDeleteForm}
+        data={hotel.id}
       />
     </>
   );

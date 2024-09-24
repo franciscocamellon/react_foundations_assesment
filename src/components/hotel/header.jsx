@@ -3,7 +3,15 @@ import { LocationOn, ModeEdit, DeleteForever } from "@mui/icons-material";
 
 import styles from "./styles.module.css";
 
-function HotelHeader({ rating, name, city, state, price, onEditIconClick }) {
+function HotelHeader({
+  rating,
+  name,
+  city,
+  state,
+  price,
+  onEditIconClick,
+  onDeleteIconClick,
+}) {
   return (
     <div className={styles.page_title_container}>
       <div className={styles.hotel_title}>
@@ -17,7 +25,7 @@ function HotelHeader({ rating, name, city, state, price, onEditIconClick }) {
       <div className={styles.hotel_price}>
         <p>
           <ModeEdit onClick={onEditIconClick} />
-          <DeleteForever />
+          <DeleteForever onClick={onDeleteIconClick} />
         </p>
         <p>R$ {price}</p>
       </div>
