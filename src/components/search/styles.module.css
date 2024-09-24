@@ -1,0 +1,16 @@
+.search_container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px;
+  background-color: #ffb700;
+  width: 400px;
+  height: 40px;
+  position: relative;
+  z-index: 1000;
+  margin-top: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 5px;
+  gap: 5px;
+}

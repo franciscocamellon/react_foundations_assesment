@@ -104,7 +104,6 @@ function RegistrationForm(props) {
     const filteredHotel = arrayHotels.find((hotel) => hotel.id === id);
 
     if (filteredHotel) {
-      console.log(formData.amenities);
       filteredHotel.name = formData.name;
       filteredHotel.city = formData.city;
       filteredHotel.state = formData.state;

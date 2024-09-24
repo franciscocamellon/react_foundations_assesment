@@ -19,7 +19,6 @@ function DeleteForm(props) {
   }
 
   function deleteHotel(event, id) {
-    console.log(id);
     event.preventDefault();
 
     const arrayHotels = JSON.parse(localStorage.getItem("@hotels"));
