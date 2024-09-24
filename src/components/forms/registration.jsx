@@ -58,10 +58,6 @@ function RegistrationForm(props) {
         }
   );
 
-  useEffect(() => {
-    console.log(formData);
-  }, []);
-
   function saveHotel(event) {
     event.preventDefault();
 
@@ -79,8 +75,8 @@ function RegistrationForm(props) {
       description: formData.description,
       amenities: chosenAmenities,
     };
+
     const arrayHotels = JSON.parse(localStorage.getItem("@hotels"));
-    console.log(arrayHotels);
     arrayHotels.push(newHotel);
     localStorage.setItem("@hotels", JSON.stringify(arrayHotels));
 
@@ -101,13 +97,39 @@ function RegistrationForm(props) {
     props.onClose();
   }
 
+  function editHotel(event, id) {
+    event.preventDefault();
+
+    const arrayHotels = JSON.parse(localStorage.getItem("@hotels"));
+    const filteredHotel = arrayHotels.find((hotel) => hotel.id === id);
+
+    if (filteredHotel) {
+      console.log(formData.amenities);
+      filteredHotel.name = formData.name;
+      filteredHotel.city = formData.city;
+      filteredHotel.state = formData.state;
+      filteredHotel.price = formData.price;
+      filteredHotel.rating = formData.rating;
+      filteredHotel.principalImage = formData.principalImage;
+      filteredHotel.firstRoom = formData.firstRoom;
+      filteredHotel.secondRoom = formData.secondRoom;
+      filteredHotel.thirdRoom = formData.thirdRoom;
+      filteredHotel.amenities = chosenAmenities;
+      filteredHotel.description = formData.description;
+    }
+
+    localStorage.setItem("@hotels", JSON.stringify(arrayHotels));
+
+    props.onClose();
+  }
+
   function getChosenAmenities(event) {
     const { name, checked } = event.target;
+
     setChosenAmenities((prevAmenities) => ({
       ...prevAmenities,
       [name]: checked,
     }));
-    console.log(chosenAmenities);
   }
 
   return (
@@ -175,7 +197,7 @@ function RegistrationForm(props) {
               <Stack>
                 <Typography component="legend">Rating</Typography>
                 <Rating
-                  value={parseInt(formData.rating) || ""}
+                  value={parseInt(formData.rating) || 0}
                   title="Rating"
                   onChange={(event) =>
                     setFormData({ ...formData, rating: event.target.value })
@@ -261,7 +283,6 @@ function RegistrationForm(props) {
             </FormControl>
             <TextField
               value={formData.description || ""}
-              id="outlined-multiline-static"
               label="Descrição"
               multiline
               rows={4}
@@ -274,9 +295,19 @@ function RegistrationForm(props) {
         </DialogContent>
         <DialogActions>
           <Button onClick={props.onClose}>Cancelar</Button>
-          <Button type="submit" onClick={(event) => saveHotel(event)}>
-            Salvar
-          </Button>
+
+          {props.data ? (
+            <Button
+              type="submit"
+              onClick={(event) => editHotel(event, props.data.id)}
+            >
+              Editar
+            </Button>
+          ) : (
+            <Button type="submit" onClick={(event) => saveHotel(event)}>
+              Salvar
+            </Button>
+          )}
         </DialogActions>
       </Dialog>
     </>

@@ -7,14 +7,7 @@ import RegistrationForm from "../forms/registration";
 
 import styles from "./styles.module.css";
 
-function Hotel({ hotel }) {
-  const [isFormOpen, setIsFormOpen] = useState(false);
-
-  function handleOpenForm() {
-    setIsFormOpen(!isFormOpen);
-    console.log(isFormOpen);
-  }
-
+function Hotel({ hotel, formVisibility, onCloseForm, onEditClick }) {
   return (
     <>
       <HotelHeader
@@ -23,7 +16,7 @@ function Hotel({ hotel }) {
         city={hotel.city}
         state={hotel.state}
         price={hotel.price}
-        onEditIconClick={() => setIsFormOpen(true)}
+        onEditIconClick={() => onEditClick(true)}
         onDeleteIconClick={() => {}}
       />
       <HotelImageList
@@ -37,8 +30,8 @@ function Hotel({ hotel }) {
         amenities={hotel.amenities}
       />
       <RegistrationForm
-        visibility={isFormOpen}
-        onClose={handleOpenForm}
+        visibility={formVisibility}
+        onClose={onCloseForm}
         data={hotel}
       />
     </>
