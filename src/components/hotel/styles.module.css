@@ -33,6 +33,14 @@
   text-align: end;
 }
 
+.hotel_price p:first-child {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 5px;
+  font-size: 8px;
+  cursor: pointer;
+}
+
 .hotel_description {
   display: flex;
   flex-direction: column;

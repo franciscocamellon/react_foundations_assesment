@@ -24,30 +24,43 @@ import { brazilianStates, amenities } from "../../data/applicationData";
 import { useEffect, useState } from "react";
 
 function RegistrationForm(props) {
-  const [formData, setFormData] = useState({
-    id: "",
-    name: "",
-    principalImage: "",
-    firstRoom: "",
-    secondRoom: "",
-    thirdRoom: "",
-    rating: "",
-    city: "",
-    state: "",
-    price: "",
-    description: "",
-    amenities: "",
-  });
-  const [chosenAmenities, setChosenAmenities] = useState({
-    Wifi: false,
-    LocalParking: false,
-    AcUnit: false,
-    LocalLaundryService: false,
-    Coffee: false,
-    SmokeFree: false,
-    Elevator: false,
-    Restaurant: false,
-  });
+  const [formData, setFormData] = useState(
+    props.data
+      ? props.data
+      : {
+          id: "",
+          name: "",
+          principalImage: "",
+          firstRoom: "",
+          secondRoom: "",
+          thirdRoom: "",
+          rating: "",
+          city: "",
+          state: "",
+          price: "",
+          description: "",
+          amenities: "",
+        }
+  );
+
+  const [chosenAmenities, setChosenAmenities] = useState(
+    props.data
+      ? props.data.amenities
+      : {
+          Wifi: false,
+          LocalParking: false,
+          AcUnit: false,
+          LocalLaundryService: false,
+          Coffee: false,
+          SmokeFree: false,
+          Elevator: false,
+          Restaurant: false,
+        }
+  );
+
+  useEffect(() => {
+    console.log(formData);
+  }, []);
 
   function saveHotel(event) {
     event.preventDefault();
@@ -100,10 +113,16 @@ function RegistrationForm(props) {
   return (
     <>
       <Dialog open={props.visibility}>
-        <DialogTitle> Cadastro de Hotel</DialogTitle>
+        {props.data ? (
+          <DialogTitle> Edição de Hotel</DialogTitle>
+        ) : (
+          <DialogTitle> Cadastro de Hotel</DialogTitle>
+        )}
+
         <DialogContent>
           <Stack direction="column" spacing={2} margin={2}>
             <TextField
+              value={formData.name || ""}
               onChange={(event) =>
                 setFormData({ ...formData, name: event.target.value })
               }
@@ -112,6 +131,7 @@ function RegistrationForm(props) {
             />
             <Stack direction="row" spacing={2} margin={2}>
               <TextField
+                value={formData.city || ""}
                 variant="outlined"
                 label="Cidade"
                 onChange={(event) =>
@@ -122,6 +142,7 @@ function RegistrationForm(props) {
               <FormControl sx={{ mt: 2, minWidth: 200 }}>
                 <InputLabel id="br-states">Estado</InputLabel>
                 <Select
+                  value={formData.state || ""}
                   labelId="br-states"
                   label="Estado"
                   onChange={(event) =>
@@ -144,6 +165,7 @@ function RegistrationForm(props) {
               margin={2}
             >
               <TextField
+                value={formData.price || ""}
                 variant="outlined"
                 label="Preço"
                 onChange={(event) =>
@@ -153,6 +175,7 @@ function RegistrationForm(props) {
               <Stack>
                 <Typography component="legend">Rating</Typography>
                 <Rating
+                  value={parseInt(formData.rating) || ""}
                   title="Rating"
                   onChange={(event) =>
                     setFormData({ ...formData, rating: event.target.value })
@@ -167,6 +190,7 @@ function RegistrationForm(props) {
               margin={2}
             >
               <TextField
+                value={formData.principalImage || ""}
                 variant="outlined"
                 label="Foto principal"
                 sx={{ width: "calc(50% - 16px)" }}
@@ -178,6 +202,7 @@ function RegistrationForm(props) {
                 }
               />
               <TextField
+                value={formData.firstRoom || ""}
                 variant="outlined"
                 label="Foto quarto simples"
                 sx={{ width: "calc(50% - 16px)" }}
@@ -193,6 +218,7 @@ function RegistrationForm(props) {
               margin={2}
             >
               <TextField
+                value={formData.secondRoom || ""}
                 variant="outlined"
                 label="Suíte standard"
                 sx={{ width: "calc(50% - 16px)" }}
@@ -201,6 +227,7 @@ function RegistrationForm(props) {
                 }
               />
               <TextField
+                value={formData.thirdRoom || ""}
                 variant="outlined"
                 label="Suíte casal"
                 sx={{ width: "calc(50% - 16px)" }}
@@ -233,6 +260,7 @@ function RegistrationForm(props) {
               </FormGroup>
             </FormControl>
             <TextField
+              value={formData.description || ""}
               id="outlined-multiline-static"
               label="Descrição"
               multiline

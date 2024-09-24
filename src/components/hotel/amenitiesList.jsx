@@ -12,7 +12,6 @@ import {
 import { green, grey } from "@mui/material/colors";
 
 function AmenitiesList({ list }) {
-  console.log("list:", list);
   return (
     <>
       <h4>Principais comodidades</h4>

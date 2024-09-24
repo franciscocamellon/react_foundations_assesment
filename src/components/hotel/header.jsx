@@ -1,9 +1,9 @@
 import { Rating } from "@mui/material";
-import { LocationOn } from "@mui/icons-material";
+import { LocationOn, ModeEdit, DeleteForever } from "@mui/icons-material";
 
 import styles from "./styles.module.css";
 
-function HotelHeader({ rating, name, city, state, price }) {
+function HotelHeader({ rating, name, city, state, price, onEditIconClick }) {
   return (
     <div className={styles.page_title_container}>
       <div className={styles.hotel_title}>
@@ -15,6 +15,10 @@ function HotelHeader({ rating, name, city, state, price }) {
       </div>
 
       <div className={styles.hotel_price}>
+        <p>
+          <ModeEdit onClick={onEditIconClick} />
+          <DeleteForever />
+        </p>
         <p>R$ {price}</p>
       </div>
     </div>
