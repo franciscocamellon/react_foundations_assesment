@@ -4,14 +4,14 @@ import styles from "./styles.module.css";
 import SearchBar from "../search/searchBar";
 import { TextField } from "@mui/material";
 
-function Header() {
+function Header({ searchBar }) {
   return (
-    <div>
+    <>
       <header className={styles.header}>
         <h1>Buukling.com</h1>
       </header>
-      <SearchBar />
-    </div>
+      {searchBar && <SearchBar />}
+    </>
   );
 }
 

@@ -37,7 +37,7 @@ function Details() {
 
   return (
     <>
-      <Header></Header>
+      <Header />
 
       <div className={styles.container}>
         <h1>Detalhes</h1>

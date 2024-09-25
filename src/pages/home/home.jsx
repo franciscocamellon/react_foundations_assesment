@@ -8,10 +8,25 @@ import { mockHotels } from "../../data/mockupData";
 import { Fab } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import RegistrationForm from "../../components/forms/registration";
+import OrderListBy from "../../components/order/orderList";
 
 function Home() {
   const [hotels, setHotels] = useState([]);
   const [isFormOpen, setIsFormOpen] = useState(false);
+  const [orderOption, setOrderOption] = useState(0);
+
+  // function handleOrderChange() {
+  //   switch (orderOption) {
+  //     case 10:
+  //       const priceSorted = [...hotels].sort((a, b) => a.price - b.price);
+  //       setHotels(priceSorted);
+  //       break;
+
+  //     default:
+  //       break;
+  //   }
+  //   console.log(orderOption);
+  // }
 
   function retrieveHotels() {
     const initialData = localStorage.getItem("@loadedInitialData");
@@ -30,19 +45,42 @@ function Home() {
   }
 
   useEffect(() => {
+    if (orderOption !== 0) {
+      const sortedHotels = [...hotels].sort((a, b) => {
+        switch (orderOption) {
+          case 10:
+            return a.price - b.price;
+          case 20:
+            return b.rating - a.rating;
+          case 30:
+            return a.name.localeCompare(b.name);
+          default:
+            return 0;
+        }
+      });
+      setHotels(sortedHotels); // Set new sorted array to trigger re-render
+    }
+  }, [orderOption]);
+
+  useEffect(() => {
     retrieveHotels();
-  }, [handleOpenForm]);
+  }, []);
 
   return (
     <>
-      <Header />
+      <Header searchBar />
       <div className={styles.container}>
         <div className={styles.page_title_container}>
-          <h1>Hotéis perto de você</h1>
-          <h5>
-            Encontre ofertas incríveis de hotéis para hoje à noite ou para sua
-            próxima viagem
-          </h5>
+          <div className={styles.page_title}>
+            <h1>Hotéis perto de você</h1>
+            <h5>
+              Encontre ofertas incríveis de hotéis para hoje à noite ou para sua
+              próxima viagem
+            </h5>
+          </div>
+          <div className={styles.order_by}>
+            <OrderListBy onChangeOption={setOrderOption} />
+          </div>
         </div>
 
         <div className={styles.container_list}>
