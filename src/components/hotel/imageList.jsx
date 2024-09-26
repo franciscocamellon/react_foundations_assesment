@@ -3,6 +3,7 @@ import { ImageList, ImageListItem } from "@mui/material";
 import styles from "./styles.module.css";
 
 function HotelImageList({ principalImage, firstRoom, secondRoom, thirdRoom }) {
+  const isImageAvailable = (image) => image && image.trim() !== "";
   const itemData = [
     {
       img: principalImage,
@@ -23,7 +24,7 @@ function HotelImageList({ principalImage, firstRoom, secondRoom, thirdRoom }) {
       title: "Terceiro quarto",
       cols: 2,
     },
-  ];
+  ].filter((item) => isImageAvailable(item.img));
 
   function srcset(image, size, rows = 1, cols = 1) {
     return {

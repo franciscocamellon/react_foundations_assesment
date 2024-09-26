@@ -4,9 +4,9 @@ import HotelDescription from "./description";
 import HotelHeader from "./header";
 import HotelImageList from "./imageList";
 import RegistrationForm from "../forms/registration";
+import DeleteForm from "../forms/delete";
 
 import styles from "./styles.module.css";
-import DeleteForm from "../forms/delete";
 
 function Hotel({
   hotel,
@@ -16,6 +16,7 @@ function Hotel({
   onEditClick,
   onDeleteClick,
   onCloseDeleteForm,
+  teste,
 }) {
   return (
     <>
@@ -42,6 +43,7 @@ function Hotel({
         visibility={formVisibility}
         onClose={onCloseForm}
         data={hotel}
+        onSuccess={OnSuccess}
       />
       <DeleteForm
         visibility={deleteFormVisibility}

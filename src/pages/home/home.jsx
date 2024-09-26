@@ -9,11 +9,13 @@ import OrderListBy from "../../components/order/orderList";
 import { mockHotels } from "../../data/mockupData";
 
 import styles from "./styles.module.css";
+import FormFeedbackSnackbar from "../../components/feedback/formFeedback";
 
 function Home() {
   const [hotels, setHotels] = useState([]);
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [orderOption, setOrderOption] = useState(0);
+  const [showSuccessToast, setShowSuccessToast] = useState(false);
 
   function handleOrderChange() {
     if (orderOption !== 0) {
@@ -58,6 +60,13 @@ function Home() {
 
   function handleOpenForm() {
     setIsFormOpen(!isFormOpen);
+  }
+
+  function handleOnSuccess(result) {
+    if (result === "success") {
+      setShowSuccessToast(true);
+    }
+    console.log(result);
   }
 
   useEffect(() => {
@@ -110,7 +119,17 @@ function Home() {
           <AddIcon />
         </Fab>
 
-        <RegistrationForm visibility={isFormOpen} onClose={handleOpenForm} />
+        <RegistrationForm
+          visibility={isFormOpen}
+          onClose={handleOpenForm}
+          onSuccess={handleOnSuccess}
+        />
+        <FormFeedbackSnackbar
+          isOpen={showSuccessToast}
+          onCloseFeedback={() => setShowSuccessToast(false)}
+          alertSeverity={"success"}
+          message={"Hotel salvo com sucesso!"}
+        />
       </div>
     </>
   );

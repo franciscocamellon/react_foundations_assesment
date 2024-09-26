@@ -18,49 +18,45 @@ import {
   FormControlLabel,
   FormGroup,
   Checkbox,
+  Alert,
+  Snackbar,
 } from "@mui/material";
 
 import { brazilianStates, amenities } from "../../data/applicationData";
 import { useEffect, useState } from "react";
+import FormFeedbackSnackbar from "../feedback/formFeedback";
 
 function RegistrationForm(props) {
-  const [formData, setFormData] = useState(
-    props.data
-      ? props.data
-      : {
-          id: "",
-          name: "",
-          principalImage: "",
-          firstRoom: "",
-          secondRoom: "",
-          thirdRoom: "",
-          rating: "",
-          city: "",
-          state: "",
-          price: "",
-          description: "",
-          amenities: "",
-        }
-  );
+  const [formData, setFormData] = useState({
+    id: "",
+    name: "",
+    principalImage: "",
+    firstRoom: "",
+    secondRoom: "",
+    thirdRoom: "",
+    rating: "",
+    city: "",
+    state: "",
+    price: "",
+    description: "",
+    amenities: "",
+  });
 
-  const [chosenAmenities, setChosenAmenities] = useState(
-    props.data
-      ? props.data.amenities
-      : {
-          Wifi: false,
-          LocalParking: false,
-          AcUnit: false,
-          LocalLaundryService: false,
-          Coffee: false,
-          SmokeFree: false,
-          Elevator: false,
-          Restaurant: false,
-        }
-  );
+  const [chosenAmenities, setChosenAmenities] = useState({
+    Wifi: false,
+    LocalParking: false,
+    AcUnit: false,
+    LocalLaundryService: false,
+    Coffee: false,
+    SmokeFree: false,
+    Elevator: false,
+    Restaurant: false,
+  });
 
   const [nameError, setNameError] = useState("");
   const [cityError, setCityError] = useState("");
   const [priceError, setPriceError] = useState("");
+  const [showToast, setShowToast] = useState(false);
 
   function handleHotel(hotelData, chosenAmenities, isEditMode) {
     if (isEditMode) {
@@ -141,47 +137,52 @@ function RegistrationForm(props) {
 
   function saveHotel(event) {
     event.preventDefault();
-    console.log(handleFormSubmit(formData));
 
     if (handleFormSubmit(formData)) {
-      const newHotel = handleHotel(formData, chosenAmenities, false);
+      try {
+        const newHotel = handleHotel(formData, chosenAmenities, false);
 
-      const arrayHotels = JSON.parse(localStorage.getItem("@hotels"));
-      arrayHotels.push(newHotel);
-      localStorage.setItem("@hotels", JSON.stringify(arrayHotels));
+        const arrayHotels = JSON.parse(localStorage.getItem("@hotels"));
+        arrayHotels.push(newHotel);
+        localStorage.setItem("@hotels", JSON.stringify(arrayHotels));
 
-      resetForm();
-      props.onClose();
+        resetForm();
+        props.onClose();
+        props.onSuccess("success");
+      } catch (error) {
+        props.onSuccess(error);
+      }
     } else {
-      alert("Resolva os campos obrigatorios");
+      setShowToast(true);
     }
   }
 
   function editHotel(event, id) {
     event.preventDefault();
-
     const arrayHotels = JSON.parse(localStorage.getItem("@hotels"));
     const filteredHotel = arrayHotels.find((hotel) => hotel.id === id);
 
-    if (filteredHotel) {
-      filteredHotel.name = formData.name;
-      filteredHotel.city = formData.city;
-      filteredHotel.state = formData.state;
-      filteredHotel.price = formData.price;
-      filteredHotel.rating = formData.rating;
-      filteredHotel.principalImage = formData.principalImage;
-      filteredHotel.firstRoom = formData.firstRoom;
-      filteredHotel.secondRoom = formData.secondRoom;
-      filteredHotel.thirdRoom = formData.thirdRoom;
-      filteredHotel.amenities = chosenAmenities;
-      filteredHotel.description = formData.description;
+    if (handleFormSubmit(formData)) {
+      if (filteredHotel) {
+        filteredHotel.name = formData.name;
+        filteredHotel.city = formData.city;
+        filteredHotel.state = formData.state;
+        filteredHotel.price = formData.price;
+        filteredHotel.rating = formData.rating;
+        filteredHotel.principalImage = formData.principalImage;
+        filteredHotel.firstRoom = formData.firstRoom;
+        filteredHotel.secondRoom = formData.secondRoom;
+        filteredHotel.thirdRoom = formData.thirdRoom;
+        filteredHotel.amenities = chosenAmenities;
+        filteredHotel.description = formData.description;
+      }
+
+      localStorage.setItem("@hotels", JSON.stringify(arrayHotels));
+      props.onClose();
+      props.onSuccess("success");
+    } else {
+      setShowToast(true);
     }
-    console.log("handleHotel: ", handleHotel(formData, chosenAmenities, true));
-    console.log("filteredHotel: ", filteredHotel);
-
-    localStorage.setItem("@hotels", JSON.stringify(arrayHotels));
-
-    props.onClose();
   }
 
   function getChosenAmenities(event) {
@@ -192,6 +193,46 @@ function RegistrationForm(props) {
       [name]: checked,
     }));
   }
+
+  function handleOnCloseForm() {
+    setShowToast(false);
+    setNameError("");
+    setCityError("");
+    setPriceError("");
+    props.onClose();
+  }
+
+  useEffect(() => {
+    if (props.data) {
+      setFormData({
+        id: props.data.id || "",
+        name: props.data.name || "",
+        principalImage: props.data.principalImage || "",
+        firstRoom: props.data.firstRoom || "",
+        secondRoom: props.data.secondRoom || "",
+        thirdRoom: props.data.thirdRoom || "",
+        rating: props.data.rating || "",
+        city: props.data.city || "",
+        state: props.data.state || "",
+        price: props.data.price || "",
+        description: props.data.description || "",
+        amenities: props.data.amenities || {},
+      });
+
+      setChosenAmenities(
+        props.data.amenities || {
+          Wifi: false,
+          LocalParking: false,
+          AcUnit: false,
+          LocalLaundryService: false,
+          Coffee: false,
+          SmokeFree: false,
+          Elevator: false,
+          Restaurant: false,
+        }
+      );
+    }
+  }, [props.data]);
 
   return (
     <>
@@ -373,7 +414,7 @@ function RegistrationForm(props) {
           </Stack>
         </DialogContent>
         <DialogActions>
-          <Button onClick={props.onClose}>Cancelar</Button>
+          <Button onClick={handleOnCloseForm}>Cancelar</Button>
 
           {props.data ? (
             <Button
@@ -388,6 +429,13 @@ function RegistrationForm(props) {
             </Button>
           )}
         </DialogActions>
+
+        <FormFeedbackSnackbar
+          isOpen={showToast}
+          onCloseFeedback={() => setShowToast(false)}
+          alertSeverity={"error"}
+          message={"Preencha os campos obrigatórios!"}
+        />
       </Dialog>
     </>
   );
