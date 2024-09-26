@@ -2,49 +2,100 @@
   background-color: #003b95;
   padding: 30px 20px;
   color: #fff;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: 700px;
 }
 
 .header,
-.search_container {
-  box-shadow: 0px 1px 5px 3px rgba(0, 0, 0, 0.3);
+.navLinks {
+  box-shadow: 3px 5px 3px rgba(0, 0, 0, 0.3);
 }
 
 .header h1 {
-  font-size: 1.5rem;
+  font-size: 1.75rem;
   font-weight: bold;
+  color: #fff;
+  text-indent: 15px;
 }
 
-.search_container {
+.user {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 5px;
-  background-color: #ffb700;
-  width: 400px;
-  height: 40px;
-  position: relative;
-  z-index: 1000;
-  margin-top: -20px;
-  left: 50%;
-  transform: translateX(-50%);
-  border-radius: 5px;
-  gap: 5px;
+  width: 175px;
 }
 
-.search_container input {
-  height: 30px;
-  border: 0;
-  border-radius: 3px;
-  flex: 1;
-}
-
-.search_container button {
-  height: 30px;
-  border: 0;
-  border-radius: 3px;
-  flex: 0.3;
-  background-color: #006ce4;
+.user p:first-child {
   color: #fff;
-  font-size: 1em;
+  font-size: 1.1em;
   font-weight: 600;
+}
+
+.user p:nth-child(2) {
+  color: #ffb700;
+  font-size: 0.85em;
+  font-weight: 400;
+}
+
+.user:hover {
+  cursor: pointer;
+}
+
+.user_avatar {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  border: 2px solid #ffb700;
+}
+
+.navLinks {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  position: absolute;
+  z-index: 1010;
+  color: #fff;
+  background-color: #5a5a5a;
+  left: 80%;
+  margin-top: -25px;
+}
+
+.navLinks li {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  text-align: left;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.navLinks li:hover {
+  background-color: #dedede;
+  border-radius: 0.5rem;
+}
+
+.navLinks li span {
+  color: #ffb700;
+  text-decoration: none;
+  font-weight: 300;
+  margin-left: 10px;
+}
+
+@media (min-width: 768px) {
+  .navLinks {
+    display: flex;
+    background-color: #fff;
+    color: #ffb700;
+    font-weight: 400;
+    border-radius: 0.5rem;
+  }
+
+  .navLinks li {
+    min-width: 150px;
+    padding: 0.35rem 1.5rem;
+    background-color: none;
+  }
 }

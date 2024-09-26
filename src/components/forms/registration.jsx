@@ -58,28 +58,71 @@ function RegistrationForm(props) {
         }
   );
 
-  function saveHotel(event) {
-    event.preventDefault();
+  const [nameError, setNameError] = useState("");
+  const [cityError, setCityError] = useState("");
+  const [priceError, setPriceError] = useState("");
 
-    const newHotel = {
-      id: uuidv4(),
-      name: formData.name,
-      principalImage: formData.principalImage,
-      firstRoom: formData.firstRoom,
-      secondRoom: formData.secondRoom,
-      thirdRoom: formData.thirdRoom,
-      rating: formData.rating,
-      city: formData.city,
-      state: formData.state,
-      price: formData.price,
-      description: formData.description,
-      amenities: chosenAmenities,
-    };
+  function handleHotel(hotelData, chosenAmenities, isEditMode) {
+    if (isEditMode) {
+      return {
+        name: hotelData.name,
+        principalImage: hotelData.principalImage,
+        firstRoom: hotelData.firstRoom,
+        secondRoom: hotelData.secondRoom,
+        thirdRoom: hotelData.thirdRoom,
+        rating: hotelData.rating,
+        city: hotelData.city,
+        state: hotelData.state,
+        price: hotelData.price,
+        description: hotelData.description,
+        amenities: chosenAmenities,
+      };
+    } else {
+      return {
+        id: uuidv4(),
+        name: hotelData.name,
+        principalImage: hotelData.principalImage,
+        firstRoom: hotelData.firstRoom,
+        secondRoom: hotelData.secondRoom,
+        thirdRoom: hotelData.thirdRoom,
+        rating: hotelData.rating,
+        city: hotelData.city,
+        state: hotelData.state,
+        price: hotelData.price,
+        description: hotelData.description,
+        amenities: chosenAmenities,
+      };
+    }
+  }
 
-    const arrayHotels = JSON.parse(localStorage.getItem("@hotels"));
-    arrayHotels.push(newHotel);
-    localStorage.setItem("@hotels", JSON.stringify(arrayHotels));
+  function handleFormSubmit(hotelData) {
+    let isFormDirty = false;
+    if (!hotelData.name || !hotelData.name.length) {
+      setNameError("Campo obrigatório");
+      isFormDirty = true;
+    } else {
+      setNameError("");
+    }
+    if (!hotelData.city || !hotelData.city.length) {
+      setCityError("Campo obrigatório");
+      isFormDirty = true;
+    } else {
+      setCityError("");
+    }
+    if (!hotelData.price || !hotelData.price.length) {
+      setPriceError("Campo obrigatório");
+      isFormDirty = true;
+    } else {
+      setPriceError("");
+    }
+    if (!isFormDirty) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 
+  function resetForm() {
     setFormData({
       id: "",
       name: "",
@@ -94,7 +137,24 @@ function RegistrationForm(props) {
       description: "",
       amenities: "",
     });
-    props.onClose();
+  }
+
+  function saveHotel(event) {
+    event.preventDefault();
+    console.log(handleFormSubmit(formData));
+
+    if (handleFormSubmit(formData)) {
+      const newHotel = handleHotel(formData, chosenAmenities, false);
+
+      const arrayHotels = JSON.parse(localStorage.getItem("@hotels"));
+      arrayHotels.push(newHotel);
+      localStorage.setItem("@hotels", JSON.stringify(arrayHotels));
+
+      resetForm();
+      props.onClose();
+    } else {
+      alert("Resolva os campos obrigatorios");
+    }
   }
 
   function editHotel(event, id) {
@@ -116,6 +176,8 @@ function RegistrationForm(props) {
       filteredHotel.amenities = chosenAmenities;
       filteredHotel.description = formData.description;
     }
+    console.log("handleHotel: ", handleHotel(formData, chosenAmenities, true));
+    console.log("filteredHotel: ", filteredHotel);
 
     localStorage.setItem("@hotels", JSON.stringify(arrayHotels));
 
@@ -143,21 +205,33 @@ function RegistrationForm(props) {
         <DialogContent>
           <Stack direction="column" spacing={2} margin={2}>
             <TextField
+              required
+              error={nameError && nameError.length ? true : false}
               value={formData.name || ""}
-              onChange={(event) =>
-                setFormData({ ...formData, name: event.target.value })
-              }
+              onChange={(event) => {
+                setFormData({ ...formData, name: event.target.value });
+                if (event.target.value.length > 0) {
+                  setNameError("");
+                }
+              }}
               variant="outlined"
               label="Nome do hotel"
+              helperText={nameError}
             />
             <Stack direction="row" spacing={2} margin={2}>
               <TextField
+                required
+                error={cityError && cityError.length ? true : false}
                 value={formData.city || ""}
                 variant="outlined"
                 label="Cidade"
-                onChange={(event) =>
-                  setFormData({ ...formData, city: event.target.value })
-                }
+                onChange={(event) => {
+                  setFormData({ ...formData, city: event.target.value });
+                  if (event.target.value.length > 0) {
+                    setCityError("");
+                  }
+                }}
+                helperText={cityError}
               />
 
               <FormControl sx={{ mt: 2, minWidth: 200 }}>
@@ -186,12 +260,18 @@ function RegistrationForm(props) {
               margin={2}
             >
               <TextField
+                required
+                error={priceError && priceError.length ? true : false}
                 value={formData.price || ""}
                 variant="outlined"
                 label="Preço"
-                onChange={(event) =>
-                  setFormData({ ...formData, price: event.target.value })
-                }
+                onChange={(event) => {
+                  setFormData({ ...formData, price: event.target.value });
+                  if (event.target.value.length > 0) {
+                    setPriceError("");
+                  }
+                }}
+                helperText={priceError}
               />
               <Stack>
                 <Typography component="legend">Rating</Typography>

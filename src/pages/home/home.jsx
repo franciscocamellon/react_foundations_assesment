@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
-import { Link, NavLink } from "react-router-dom";
-
-import styles from "./styles.module.css";
-import Header from "../../components/header/header";
-import HotelCard from "../../components/hotel/card";
-import { mockHotels } from "../../data/mockupData";
 import { Fab } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
+
+import Header from "../../components/header/header";
+import HotelCard from "../../components/hotel/card";
 import RegistrationForm from "../../components/forms/registration";
 import OrderListBy from "../../components/order/orderList";
+import { mockHotels } from "../../data/mockupData";
+
+import styles from "./styles.module.css";
 
 function Home() {
   const [hotels, setHotels] = useState([]);
@@ -66,7 +66,7 @@ function Home() {
 
   useEffect(() => {
     retrieveHotels();
-  }, []);
+  }, [hotels]);
 
   return (
     <>
