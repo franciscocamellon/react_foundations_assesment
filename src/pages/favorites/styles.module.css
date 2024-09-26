@@ -21,7 +21,7 @@
   margin-bottom: 20px;
   font-size: 1.05rem;
   font-weight: 500;
-  color: #595959;
+  color: var(--secondary_text_color);
 }
 
 .order_by {

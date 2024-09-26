@@ -3,15 +3,38 @@ import { Favorite, DarkMode, LightMode, Home } from "@mui/icons-material";
 import SearchBar from "../search/searchBar";
 
 import styles from "./styles.module.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function Header({ searchBar }) {
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
 
+  const setDarkMode = () => {
+    document.querySelector("body").setAttribute("data-theme", "dark");
+    localStorage.setItem("@selectedTheme", "dark");
+  };
+
+  const setLightMode = () => {
+    document.querySelector("body").setAttribute("data-theme", "light");
+    localStorage.setItem("@selectedTheme", "light");
+  };
+
+  function getSelectedTheme() {
+    const currentTheme = localStorage.getItem("@selectedTheme");
+    if (currentTheme === "dark") {
+      setDarkMode();
+    } else {
+      setLightMode();
+    }
+  }
+
   function onMenuClick() {
     setIsOpen(!isOpen);
   }
+
+  useEffect(() => {
+    getSelectedTheme();
+  }, []);
 
   return (
     <>
@@ -42,11 +65,11 @@ function Header({ searchBar }) {
             <Favorite />
             <span>Favoritos</span>
           </li>
-          <li>
+          <li onClick={() => setDarkMode()}>
             <DarkMode />
             <span>Dark Mode</span>
           </li>
-          <li>
+          <li onClick={() => setLightMode()}>
             <LightMode />
             <span>Light Mode</span>
           </li>

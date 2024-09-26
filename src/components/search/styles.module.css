@@ -3,7 +3,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 5px;
-  background-color: #ffb700;
+  background-color: var(--secondary_color);
   width: 400px;
   height: 40px;
   position: relative;

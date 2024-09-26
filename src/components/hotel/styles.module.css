@@ -1,6 +1,9 @@
+.card_container {
+  box-shadow: var(--card_box_shadow);
+}
 .card_content {
   width: 100%;
-  margin-right: 15px;
+  background-color: var(--secondary_body_background);
 }
 
 .card_header {
@@ -24,18 +27,21 @@
 .hotel_title {
   display: flex;
   flex-direction: column;
+  color: var(--primary_text_color);
 }
 
 .hotel_title p {
   display: flex;
   align-items: center;
   margin-top: 7px;
+  color: var(--secondary_text_color);
 }
 
 .hotel_price {
   font-size: 1.75rem;
   font-weight: bold;
   text-align: end;
+  color: var(--primary_text_color);
 }
 
 .hotel_price p:first-child {
@@ -51,6 +57,7 @@
   flex-direction: column;
   margin-top: 20px;
   gap: 10px;
+  color: var(--secondary_text_color);
 }
 
 .hotel_description p {
@@ -62,6 +69,7 @@
   margin-top: 15px;
   margin-bottom: -10px;
   font-size: 1.15rem;
+  color: var(--primary_text_color);
 }
 
 .image_list {

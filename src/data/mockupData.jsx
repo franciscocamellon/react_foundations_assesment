@@ -58,10 +58,13 @@ export const mockHotels = [
     id: "503fd1fe-c24d-4d48-8929-ce833853a1d3",
     name: "Itajubá Hotel",
     principalImage:
-      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/286944096.jpg?k=220b23fe3926db3611cce5dd0ded74ae43366b90caebfe3e216db866c100c740&o=&hp=1",
-    firstRoom: "",
-    secondRoom: "",
-    thirdRoom: "",
+      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/286945655.jpg?k=110d8bda6b1fdcc1102de1fd1c945f2ec139bd564cc9fc44993ce7e8d311cf58&o=&hp=1",
+    firstRoom:
+      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/381328195.webp?k=d13c7da13f4a30a67b591b2df4a3c12a5b3f0f3b6561b3db1113f7205ca64c7a&o=",
+    secondRoom:
+      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/381329103.webp?k=69c184d23587d9ce49a5ac7503180d36c4131599aae6e2ff9628bf8212aee62d&o=",
+    thirdRoom:
+      "https://cf.bstatic.com/xdata/images/hotel/max1024x768/381327565.jpg?k=b3c44e5554e647cd841d94ccf70953c0828bd70dffd312a612e317a2cf49df67&o=&hp=1",
     rating: "3",
     city: "Rio de Janeiro",
     state: "RJ",

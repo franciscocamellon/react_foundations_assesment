@@ -15,7 +15,7 @@ function AmenitiesList({ list }) {
   return (
     <>
       <h4>Principais comodidades</h4>
-      <List sx={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)" }}>
+      <List sx={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)" }}>
         <ListItem>
           <ListItemIcon>
             <Wifi color={list.Wifi ? "success" : "disabled"} />

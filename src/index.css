@@ -1,11 +1,47 @@
+:root {
+  --body_background: whitesmoke;
+  --secondary_body_background: #dedede;
+  --body_color: black;
+  --primary_surface_color: #003b95;
+  --secondary_surface_color: #1976d2;
+  --secondary_color: #ffb700;
+  --on_primary_color: #ffffff;
+  --primary_text_color: black;
+  --secondary_text_color: #595959;
+  --tertiary_text_color: #ffb700;
+  --navlink_background_color: #5a5a5a;
+  --navlink_hover_color: #dedede;
+  --card_box_shadow: 3px 5px 3px rgba(0, 0, 0, 0.3);
+  --header_box_shadow: 3px 5px 3px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="dark"] {
+  --body_background: #1a1a1a;
+  --secondary_body_background: #a8a8a8;
+  --body_color: #e0e0e0;
+  --primary_surface_color: #001f4d;
+  --secondary_surface_color: #105a99;
+  --secondary_color: #cc9300;
+  --on_primary_color: #f2f2f2;
+  --primary_text_color: #e0e0e0;
+  --secondary_text_color: #a8a8a8;
+  --tertiary_text_color: #cc9300;
+  --navlink_background_color: #333333;
+  --navlink_hover_color: #f2f2f2;
+  --card_box_shadow: 3px 5px 3px #1059998b;
+  --header_box_shadow: 3px 5px 3px #1059998b;
+}
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  transition: all 0.4s ease-in-out;
 }
 
 body {
   font-family: "Lato", sans-serif;
+  background-color: var(--body_background);
 }
 
 a {

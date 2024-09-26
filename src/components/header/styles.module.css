@@ -1,7 +1,7 @@
 .header {
-  background-color: #003b95;
+  background-color: var(--primary_surface_color);
   padding: 30px 20px;
-  color: #fff;
+  color: var(--on_primary_color);
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -10,13 +10,13 @@
 
 .header,
 .navLinks {
-  box-shadow: 3px 5px 3px rgba(0, 0, 0, 0.3);
+  box-shadow: var(--header_box_shadow);
 }
 
 .header h1 {
   font-size: 1.75rem;
   font-weight: bold;
-  color: #fff;
+  color: var(--on_primary_color);
   text-indent: 15px;
 }
 
@@ -28,13 +28,13 @@
 }
 
 .user p:first-child {
-  color: #fff;
+  color: var(--on_primary_color);
   font-size: 1.1em;
   font-weight: 600;
 }
 
 .user p:nth-child(2) {
-  color: #ffb700;
+  color: var(--tertiary_text_color);
   font-size: 0.85em;
   font-weight: 400;
 }
@@ -47,7 +47,7 @@
   height: 50px;
   width: 50px;
   border-radius: 50%;
-  border: 2px solid #ffb700;
+  border: 2px solid var(--secondary_color);
 }
 
 .navLinks {
@@ -56,8 +56,8 @@
   flex-grow: 1;
   position: absolute;
   z-index: 1010;
-  color: #fff;
-  background-color: #5a5a5a;
+  color: var(--on_primary_color);
+  background-color: var(--navlink_background_color);
   left: 80%;
   margin-top: -25px;
 }
@@ -73,12 +73,12 @@
 }
 
 .navLinks li:hover {
-  background-color: #dedede;
+  background-color: var(--navlink_hover_color);
   border-radius: 0.5rem;
 }
 
 .navLinks li span {
-  color: #ffb700;
+  color: var(--secondary_color);
   text-decoration: none;
   font-weight: 300;
   margin-left: 10px;
@@ -87,8 +87,8 @@
 @media (min-width: 768px) {
   .navLinks {
     display: flex;
-    background-color: #fff;
-    color: #ffb700;
+    background-color: var(--on_primary_color);
+    color: var(--secondary_color);
     font-weight: 400;
     border-radius: 0.5rem;
   }
