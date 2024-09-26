@@ -26,6 +26,7 @@ export const mockHotels = [
       SmokeFree: true,
       Wifi: true,
     },
+    favorite: false,
   },
   {
     id: "c1ab4db6-789d-4b6a-b61c-2cf6987dfcc9",
@@ -51,6 +52,7 @@ export const mockHotels = [
       SmokeFree: true,
       Wifi: true,
     },
+    favorite: false,
   },
   {
     id: "503fd1fe-c24d-4d48-8929-ce833853a1d3",
@@ -76,6 +78,7 @@ export const mockHotels = [
       SmokeFree: true,
       Wifi: true,
     },
+    favorite: false,
   },
   {
     id: "474338b4-ac07-4c13-9663-4ed726d80dab",
@@ -101,6 +104,7 @@ export const mockHotels = [
       SmokeFree: true,
       Wifi: true,
     },
+    favorite: false,
   },
   {
     id: "04d99317-fff0-4eec-8a9d-724e0275a9aa",
@@ -126,6 +130,7 @@ export const mockHotels = [
       SmokeFree: true,
       Wifi: true,
     },
+    favorite: false,
   },
   {
     id: "a1bb89f9-24d8-4450-95f8-6e2e4d79d00a",
@@ -151,5 +156,6 @@ export const mockHotels = [
       SmokeFree: true,
       Wifi: true,
     },
+    favorite: false,
   },
 ];

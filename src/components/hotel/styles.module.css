@@ -9,6 +9,11 @@
   justify-content: space-between;
 }
 
+.card_info {
+  display: flex;
+  align-items: center;
+}
+
 .page_title_container {
   display: flex;
   justify-content: space-between;
@@ -73,7 +78,7 @@
   }
 
   .card_info {
-    align-items: flex-start;
+    align-items: center;
     text-align: left;
   }
 }

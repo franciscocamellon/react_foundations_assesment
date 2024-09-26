@@ -15,18 +15,34 @@ function Home() {
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [orderOption, setOrderOption] = useState(0);
 
-  // function handleOrderChange() {
-  //   switch (orderOption) {
-  //     case 10:
-  //       const priceSorted = [...hotels].sort((a, b) => a.price - b.price);
-  //       setHotels(priceSorted);
-  //       break;
+  function handleOrderChange() {
+    if (orderOption !== 0) {
+      const sortedHotels = [...hotels].sort((a, b) => {
+        switch (orderOption) {
+          case 10:
+            return a.price - b.price;
+          case 20:
+            return b.rating - a.rating;
+          case 30:
+            return a.name.localeCompare(b.name);
+          default:
+            return 0;
+        }
+      });
+      setHotels(sortedHotels);
+    }
+  }
 
-  //     default:
-  //       break;
-  //   }
-  //   console.log(orderOption);
-  // }
+  function handleFavorite(id) {
+    const arrayHotels = JSON.parse(localStorage.getItem("@hotels")) || [];
+    const hotelIndex = arrayHotels.findIndex((hotel) => hotel.id === id);
+
+    if (hotelIndex !== -1) {
+      arrayHotels[hotelIndex].favorite = !arrayHotels[hotelIndex].favorite;
+      localStorage.setItem("@hotels", JSON.stringify(arrayHotels));
+      setHotels([...arrayHotels]);
+    }
+  }
 
   function retrieveHotels() {
     const initialData = localStorage.getItem("@loadedInitialData");
@@ -45,21 +61,7 @@ function Home() {
   }
 
   useEffect(() => {
-    if (orderOption !== 0) {
-      const sortedHotels = [...hotels].sort((a, b) => {
-        switch (orderOption) {
-          case 10:
-            return a.price - b.price;
-          case 20:
-            return b.rating - a.rating;
-          case 30:
-            return a.name.localeCompare(b.name);
-          default:
-            return 0;
-        }
-      });
-      setHotels(sortedHotels); // Set new sorted array to trigger re-render
-    }
+    handleOrderChange();
   }, [orderOption]);
 
   useEffect(() => {
@@ -85,7 +87,11 @@ function Home() {
 
         <div className={styles.container_list}>
           {hotels.map((hotel) => (
-            <HotelCard key={hotel.id} hotel={hotel} />
+            <HotelCard
+              key={hotel.id}
+              hotel={hotel}
+              onFavoriteToggle={handleFavorite}
+            />
           ))}
         </div>
         <Fab
