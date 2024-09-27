@@ -5,7 +5,7 @@ import SearchBar from "../search/searchBar";
 import styles from "./styles.module.css";
 import { useEffect, useState } from "react";
 
-function Header({ searchBar }) {
+function Header({ searchBar, data, onSort }) {
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
 
@@ -75,7 +75,7 @@ function Header({ searchBar }) {
           </li>
         </ul>
       )}
-      {searchBar && <SearchBar />}
+      {searchBar && <SearchBar hotels={data} onSortHotels={onSort} />}
     </>
   );
 }

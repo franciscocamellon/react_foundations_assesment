@@ -4,7 +4,7 @@
   align-items: center;
   padding: 5px;
   background-color: var(--secondary_color);
-  width: 400px;
+  width: 20vw;
   height: 40px;
   position: relative;
   z-index: 1020;
@@ -13,5 +13,5 @@
   transform: translateX(-50%);
   border-radius: 5px;
   gap: 5px;
-  box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.3);
+  box-shadow: var(--header_box_shadow);
 }

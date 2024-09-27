@@ -53,7 +53,6 @@ function Home() {
       localStorage.setItem("@hotels", JSON.stringify(mockHotels));
       localStorage.setItem("@loadedInitialData", JSON.stringify(true));
     }
-
     const arrayHotels = JSON.parse(localStorage.getItem("@hotels"));
     setHotels(arrayHotels);
   }
@@ -65,6 +64,7 @@ function Home() {
   function handleOnSuccess(result) {
     if (result === "success") {
       setShowSuccessToast(true);
+      retrieveHotels();
     }
     console.log(result);
   }
@@ -75,7 +75,7 @@ function Home() {
 
   useEffect(() => {
     retrieveHotels();
-  }, [hotels]);
+  }, []);
 
   return (
     <>

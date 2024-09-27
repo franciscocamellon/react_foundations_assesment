@@ -10,6 +10,7 @@ import HotelImageList from "../../components/hotel/imageList";
 import HotelDescription from "../../components/hotel/description";
 import RegistrationForm from "../../components/forms/registration";
 import DeleteForm from "../../components/forms/delete";
+import EditForm from "../../components/forms/editForm";
 
 function Details() {
   const params = useParams();
@@ -30,13 +31,6 @@ function Details() {
     amenities: "",
   });
   const [showSuccessToast, setShowSuccessToast] = useState(false);
-
-  function handleOnSuccess(result) {
-    // if (result === "success") {
-    //   setShowSuccessToast(true);
-    // }
-    console.log(result);
-  }
 
   function handleOpenForm() {
     setIsFormOpen(!isFormOpen);
@@ -101,7 +95,7 @@ function Details() {
         )}
       </div>
 
-      <RegistrationForm
+      <EditForm
         visibility={isFormOpen}
         onClose={handleOpenForm}
         data={clickedHotel}

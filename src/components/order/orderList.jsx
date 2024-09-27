@@ -10,15 +10,16 @@ function OrderListBy({ onChangeOption }) {
         autoWidth
         onChange={(event) => onChangeOption(event.target.value)}
         sx={{
-          height: 25,
-          borderRadius: 15,
+          height: 30,
           fontSize: "14px",
+          backgroundColor: "#fff",
         }}
         MenuProps={{
           PaperProps: {
             sx: {
               "& .MuiMenuItem-root": {
                 fontSize: "14px",
+                backgroundColor: "#fff",
               },
             },
           },
